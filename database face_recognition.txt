@@ -1,0 +1,65 @@
+create database face_recognition;
+
+
+use face_recognition
+
+
+-- Students Table
+CREATE TABLE Student (
+    StudentID INT AUTO_INCREMENT PRIMARY KEY,
+    RollNumber VARCHAR(20),
+    Name VARCHAR(255),
+    Department VARCHAR(255),
+    DateOfBirth DATE,
+    Email VARCHAR(255),
+    Address TEXT,
+    PhotoPath VARCHAR(255),
+    Course VARCHAR(255),
+    Year VARCHAR(20),
+    Semester VARCHAR(50),
+    Shift VARCHAR(50),
+    Gender VARCHAR(20),
+    MobileNumber VARCHAR(20),
+    Teacher VARCHAR(255)
+);
+
+-- Attendance Table
+CREATE TABLE stdattendance (
+    std_id VARCHAR(255) PRIMARY KEY,
+    std_roll_no VARCHAR(255),
+    std_name VARCHAR(255),
+    std_time VARCHAR(255),
+    std_date VARCHAR(255),
+    std_attendance VARCHAR(255),
+    FOREIGN KEY (StudentID) REFERENCES Student(StudentID)
+);
+
+-- Users Table (for System Users)
+CREATE TABLE Users (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(255) UNIQUE,
+    Password VARCHAR(255),
+    FirstName VARCHAR(255),
+    LastName VARCHAR(255),
+    Email VARCHAR(255),
+    Role VARCHAR(50)
+);
+
+-- Training Data Table (Optional but Recommended)
+CREATE TABLE TrainingData (
+    TrainingID INT AUTO_INCREMENT PRIMARY KEY,
+    TrainingDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ModelPath VARCHAR(255),
+    Parameters TEXT
+);
+
+CREATE TABLE IF NOT EXISTS regteach (
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    contact_no VARCHAR(20),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    security_question VARCHAR(255) NOT NULL,
+    answer VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
